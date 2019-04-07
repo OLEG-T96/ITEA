@@ -1,4 +1,3 @@
-#include <QCoreApplication>
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
@@ -8,31 +7,21 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-char UpperReg(char symb)
+int main()
 {
-    return symb -= 32;
-}
-
-int main(int argc, char *argv[])
-{
-    std::string str;
     cout<<"Enter your string:  ";
+    std::string str;
     cin>>str;
     cout<<endl;
-    for(int i=0; i<str.length(); i++)
+    const int Shift{32}, ASCII_a{97}, ASCII_z{122};
+    for(unsigned int i=0; i<str.length(); ++i)
       {
-
-        if( ((int) str[i] >= 97) && ( (int) str[i] <= 122) )
+        if( (str[i] >= ASCII_a) && (str[i] <= ASCII_z) )
           {
-            //str[i] = UpperReg();
-            cout<<UpperReg(str[i]);
+            str[i] -= Shift;
           }
-        else
-          {
-            cout<<str[i];
-          }
-
       }
+    cout<<str;
 
     return 0;
 }
