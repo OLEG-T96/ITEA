@@ -1,4 +1,3 @@
-#include <QCoreApplication>
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
@@ -8,22 +7,32 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-int main(int argc, char *argv[])
+int main()
 {
   std::string str;
   cout<<"Enter your string:  ";
-  cin>>str;
+  std::getline(std::cin, str);
   cout<<endl;
-  cout<<"Is digit: ";
-  for(int i=0; i<str.length(); i++)
+  if(str.empty())
     {
-
-      if( ((int) str[i] >= 48) && ( (int) str[i] <= 57) )
+      cout<<"Your string is empty";
+      return 0;
+    }
+  cout<<"Is digit: ";
+  unsigned counter = 0;
+  const int ASCII_0{48}, ASCII_9{57};
+  for(unsigned int i=0; i<str.length(); ++i)
+    {
+      if( ( str[i] >= ASCII_0) && (  str[i] <= ASCII_9) )
         {
           cout<<str[i]<<" ";
+          counter++;
         }
-
+    }
+  if(counter == 0)
+    {
+      cout<<"No digits";
     }
 
-    return 0;
+  return 0;
 }
