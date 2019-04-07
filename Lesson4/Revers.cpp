@@ -1,4 +1,3 @@
-#include <QCoreApplication>
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
@@ -8,16 +7,19 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-int main(int argc, char *argv[])
+int main()
 {
-  std::string str;
+  std::string User_str;
   cout<<"Enter your string:  ";
-  cin>>str;
+  cin>>User_str;
   cout<<endl;
-  for(int i = (str.length()-1); i >= 0; i--)
+  std::string Reverse_str = User_str;
+  int len = User_str.length();
+  for(int i = (len-1); i >= 0; --i)
     {
-      cout<<str[i];
+      User_str[(len-1)-i] = Reverse_str[i];
     }
+  cout<<User_str;
 
     return 0;
 }
