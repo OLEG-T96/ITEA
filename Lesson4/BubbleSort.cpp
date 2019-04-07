@@ -3,38 +3,87 @@
 #include <cmath>
 #include <cstdlib>
 #include <cstring>
+#include <ctime>
 
 using std::cout;
 using std::cin;
 using std::endl;
 
-int main(int argc, char *argv[])
+void FillRandMass (int *Arr, unsigned ArrSize, int range)
 {
-  const int ArrSize = 10;
-  int Array[ArrSize];
-  cout<<"Before sort: ";
-    for(int i = 0; i < ArrSize; i++)
-      {
-         Array[i] = rand() % 20;
-         cout<<Array[i]<<" ";
-      }
-    for(int j = 1; j < (ArrSize-1); j++)
+    for(unsigned i = 0; i < ArrSize; ++i)
        {
-         for(int i = 0; i < (ArrSize - j); i++)
+          Arr[i] = rand() % range;
+       }
+}
+double BubbleSort(int *Arr, unsigned ArrSize)
+{
+    long start_time =  clock();
+    int buf;
+    for(unsigned j = 1; j < (ArrSize-1); ++j)
+       {
+         for(unsigned i = 0; i < (ArrSize - j); ++i)
             {
-              if(Array[i] > Array[i+1] )
+              if(Arr[i] > Arr[i+1] )
                 {
-                  int buf = Array[i+1];
-                  Array[i+1] = Array[i];
-                  Array[i] = buf;
+                  buf = Arr[i+1];
+                  Arr[i+1] = Arr[i];
+                  Arr[i] = buf;
                 }
             }
        }
-    cout<<endl<<"Bubble sort: ";
-    for(int i = 0; i < ArrSize; i++)
+    long end_time = clock();
+    return (end_time - start_time);
+}
+
+double Quicksort(int *array, int low, int high)
+{
+    long start_time =  clock();
+    int i = low;
+    int j = high;
+    int pivot = array[(i + j) / 2];
+    int buf;
+
+    while (i <= j)
+    {
+        while (array[i] < pivot)
+            i++;
+        while (array[j] > pivot)
+            j--;
+        if (i <= j)
+        {
+            buf = array[i];
+            array[i] = array[j];
+            array[j] = buf;
+            i++;
+            j--;
+        }
+    }
+    if (j > low)
+        Quicksort(array, low, j);
+    if (i < high)
+        Quicksort(array, i, high);
+    long end_time = clock();
+    return (end_time - start_time);
+}
+
+int main(int argc, char *argv[])
+{
+   cout<<"Enter Mass Size ";
+   unsigned Size;
+   cin>>Size;
+   int *Array = new int[Size];
+   cout<<"Before sort: ";
+   FillRandMass(Array, Size, 100);
+   for(unsigned i = 0; i < Size; ++i)
       {
-        cout<<Array[i]<<" ";
+         cout<<Array[i]<<" ";
       }
+   cout<<endl;
+   cout<<endl<<"Time for BubbleSort: "<<BubbleSort( Array, Size )<<" ms";
+   cout<<endl;
+   FillRandMass(Array, Size, 100);
+   cout<<endl<<"Time for Qsort: "<<Quicksort( Array, 0 , Size)<<" ms";
 
     return 0;
 }
