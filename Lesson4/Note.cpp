@@ -27,7 +27,7 @@ int main()
    string CommandBuff;
    unsigned start_pos{0}, end_pos{0}, cursor{0};
 
-   cout<<"Type 'quit' to finish program "<<endl;
+   cout<< "Type 'quit' to finish program " << endl;
 
  for(;;)
  {
@@ -37,14 +37,14 @@ int main()
          cin>>TextBuff;
          UserData = TextBuff;
          cursor += TextBuff.length();
-         cout<<"->"<<cursor<<"\t\t"<<UserData<<endl;
+         cout<< "->" << cursor << "\t\t" << UserData << endl;
      }
    else if(CommandBuff == "select")
      {
         cin>>start_pos;
         cin>>end_pos;
         TextBuff = select(UserData,start_pos, end_pos);
-        cout<<"->"<<cursor<<"\t\t"<<UserData<<endl;
+        cout<< "->" << cursor << "\t\t" << UserData << endl;
      }
    else if(CommandBuff == "copy")
      {
@@ -52,7 +52,7 @@ int main()
         cin>>end_pos;
         TextBuff = select(UserData,start_pos, end_pos);
         cursor += (end_pos - start_pos);
-        cout<<"->"<<cursor<<"\t\t"<<UserData<<endl;
+        cout<< "->" << cursor << "\t\t" << UserData << endl;
      }
    else if(CommandBuff == "paste")
      {
@@ -62,7 +62,7 @@ int main()
         end = select(UserData,(cursor + 1),UserData.length());
         UserData = beg + TextBuff + end;
         cursor += TextBuff.length();
-        cout<<"->"<<cursor<<"\t\t"<<UserData<<endl;
+        cout<< "->" << cursor << "\t\t" << UserData << endl;
 
      }
    else if(CommandBuff == "move")
@@ -73,17 +73,17 @@ int main()
            {
              cin>>pos;
              cursor -= pos;
-             cout<<"->"<<cursor<<"\t\t"<<UserData<<endl;
+             cout<< "->" << cursor << "\t\t" << UserData << endl;
            }
          else if(CommandBuff == "right")
            {
              cin>>pos;
              cursor += pos;
-             cout<<"->"<<cursor<<"\t\t"<<UserData<<endl;
+             cout<< "->" << cursor << "\t\t" << UserData << endl;
            }
          else
            {
-             cout<<"Wrong argument";
+             cout<< "Wrong argument" << endl;
            }
      }
    else if(CommandBuff == "cut")
@@ -94,7 +94,7 @@ int main()
        end = select(UserData, (end_pos+1), UserData.length());
        UserData = beg + end;
        cursor = UserData.length();
-       cout<<"->"<<cursor<<"\t\t"<<UserData<<endl;
+       cout<< "->" << cursor << "\t\t" << UserData << endl;
      }
    else if(CommandBuff == "quit")
      {
@@ -102,7 +102,7 @@ int main()
      }
    else
     {
-       cout<<"Wrong argument"<<endl;
+       cout<< "Wrong argument" << endl;
     }
  }
 
